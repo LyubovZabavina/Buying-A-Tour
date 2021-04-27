@@ -1,0 +1,35 @@
+version: '3.7'
+services:
+  mysql:
+    image: mysql:8.0.24
+    restart: always
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_DATABASE=app
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=12345
+
+
+  postgresql:
+    image: library/postgres:12-alpine
+    restart: always
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./data:/var/lib/postgres/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+
+
+  node-app:
+    build: gate-simulator
+    image: node-app:1.0
+    ports:
+      - '9999:9999'
+
