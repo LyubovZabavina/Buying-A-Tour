@@ -1,7 +1,0 @@
-ru/netology/data/DataGenerator.java
- ru.netology.data.DataGenerator
-ru/netology/data/DataHelper.java
- ru.netology.data.DataHelper
- ru.netology.data.DataHelper$CardInfo
-ru/netology/test/WebServiceTest.java
- ru.netology.test.WebServiceTest
