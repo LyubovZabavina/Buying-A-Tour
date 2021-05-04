@@ -19,7 +19,7 @@ public class CreditCardDataTest {
 
     @BeforeAll
     static void setUpAll() {
-        open("http://localhost:8080");
+//        open("http://localhost:8080");
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
@@ -30,11 +30,13 @@ public class CreditCardDataTest {
 
     @Test
     void downloadFormPaymentByCard() {
+        open("http://localhost:8080");
         offerPage.payCreditByCard();
     }
 
     @Test
     void creditByApprovedCardWithAllValidValues() {
+        open("http://localhost:8080");
         val payCreditForm = offerPage.payCreditByCard();
         val approvedInfo = DataHelper.getApprovedCardInfo();
         payCreditForm.fillingForm(approvedInfo);
@@ -44,6 +46,7 @@ public class CreditCardDataTest {
 
     @Test
     void creditByDeclinedCardWithAllValidValues() {
+        open("http://localhost:8080");
         val payCreditForm = offerPage.payCreditByCard();
         val declinedInfo = DataHelper.getDeclinedCardInfo();
         payCreditForm.fillingForm(declinedInfo);
@@ -53,6 +56,7 @@ public class CreditCardDataTest {
 
     @Test
     void creditByInvalidCardNumber() {
+        open("http://localhost:8080");
         val payCreditForm = offerPage.payCreditByCard();
         val invalidCardNumber = DataHelper.getInvalidCardNumberInfo();
         payCreditForm.fillingForm(invalidCardNumber);
@@ -61,6 +65,7 @@ public class CreditCardDataTest {
 
     @Test
     void creditByApprovedCardWithInvalidMonthValue() {
+        open("http://localhost:8080");
         val payCreditForm = offerPage.payCreditByCard();
         val invalidMonth = DataHelper.getInvalidMonthInfo();
         payCreditForm.fillFormNoSendRequest(invalidMonth);
@@ -69,6 +74,7 @@ public class CreditCardDataTest {
 
     @Test
     void creditByApprovedCardWithExpiredYearValue() {
+        open("http://localhost:8080");
         val payCreditForm = offerPage.payCreditByCard();
         val expiredYear = DataHelper.getExpiredYearInfo();
         payCreditForm.fillFormNoSendRequest(expiredYear);
@@ -77,6 +83,7 @@ public class CreditCardDataTest {
 
     @Test
     void creditByApprovedCardWithInvalidYearValue() {
+        open("http://localhost:8080");
         val payCreditForm = offerPage.payCreditByCard();
         val invalidYear = DataHelper.getInvalidYearInfo();
         payCreditForm.fillFormNoSendRequest(invalidYear);
@@ -85,6 +92,7 @@ public class CreditCardDataTest {
 
     @Test
     void creditByApprovedCardWithInvalidOwnerValue() {
+        open("http://localhost:8080");
         val payCreditForm = offerPage.payCreditByCard();
         val invalidOwner = DataHelper.getInvalidOwnerInfo();
         payCreditForm.fillFormNoSendRequest(invalidOwner);
@@ -93,6 +101,7 @@ public class CreditCardDataTest {
 
     @Test
     void sendFormWithEmptyFieldsByCreditForm() {
+        open("http://localhost:8080");
         val payCreditForm = offerPage.payCreditByCard();
         val emptyFields = DataHelper.getEmptyFields();
         payCreditForm.fillFormNoSendRequest(emptyFields);
@@ -102,6 +111,7 @@ public class CreditCardDataTest {
 
     @Test
     void validValuesOfFormAfterSendAnEmptyCreditForm() {
+        open("http://localhost:8080");
         val payCreditForm = offerPage.payCreditByCard();
         val emptyFields = DataHelper.getEmptyFields();
         val approvedInfo = DataHelper.getApprovedCardInfo();
@@ -114,6 +124,7 @@ public class CreditCardDataTest {
 
     @Test
     void invalidValuesOfAllFieldsForm() {
+        open("http://localhost:8080");
         val payCreditForm = offerPage.payCreditByCard();
         val invalidValue = DataHelper.getInvalidCardForm();
         payCreditForm.fillFormNoSendRequest(invalidValue);

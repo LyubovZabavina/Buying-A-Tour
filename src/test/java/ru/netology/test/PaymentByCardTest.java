@@ -20,7 +20,7 @@ public class PaymentByCardTest {
 
     @BeforeAll
     static void setUpAll() {
-        open("http://localhost:8080");
+//        open("http://localhost:8080");
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
@@ -31,11 +31,13 @@ public class PaymentByCardTest {
 
     @Test
     void downloadFormPaymentByCard() {
+        open("http://localhost:8080");
         offerPage.payByDebitCard();
     }
 
     @Test
     void payByApprovedCardWithAllValidValues() {
+        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val approvedInfo = DataHelper.getApprovedCardInfo();
         payForm.fillingForm(approvedInfo);
@@ -45,6 +47,7 @@ public class PaymentByCardTest {
 
     @Test
     void payByApprovedCardWithAllValidValuesAndAmountSQLTest() {
+        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val approvedInfo = DataHelper.getApprovedCardInfo();
         payForm.fillingForm(approvedInfo);
@@ -54,6 +57,7 @@ public class PaymentByCardTest {
 
     @Test
     void payByDeclinedCardWithAllValidValues() {
+        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val declinedInfo = DataHelper.getDeclinedCardInfo();
         payForm.fillingForm(declinedInfo);
@@ -63,6 +67,7 @@ public class PaymentByCardTest {
 
     @Test
     void payByInvalidCardNumber() {
+        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val invalidCardNumber = DataHelper.getInvalidCardNumberInfo();
         payForm.fillingForm(invalidCardNumber);
@@ -71,6 +76,7 @@ public class PaymentByCardTest {
 
     @Test
     void payByApprovedCardWithInvalidMonthValue() {
+        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val invalidMonth = DataHelper.getInvalidMonthInfo();
         payForm.fillFormNoSendRequest(invalidMonth);
@@ -79,6 +85,7 @@ public class PaymentByCardTest {
 
     @Test
     void payByApprovedCardWithExpiredYearValue() {
+        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val expiredYear = DataHelper.getExpiredYearInfo();
         payForm.fillFormNoSendRequest(expiredYear);
@@ -87,6 +94,7 @@ public class PaymentByCardTest {
 
     @Test
     void payByApprovedCardWithInvalidYearValue() {
+        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val invalidYear = DataHelper.getInvalidYearInfo();
         payForm.fillFormNoSendRequest(invalidYear);
@@ -95,6 +103,7 @@ public class PaymentByCardTest {
 
     @Test
     void payByApprovedCardWithInvalidOwnerValue() {
+        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val invalidOwner = DataHelper.getInvalidOwnerInfo();
         payForm.fillFormNoSendRequest(invalidOwner);
@@ -103,6 +112,7 @@ public class PaymentByCardTest {
 
     @Test
     void sendFormWithEmptyFields() {
+        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val emptyFields = DataHelper.getEmptyFields();
         payForm.fillFormNoSendRequest(emptyFields);
@@ -112,6 +122,7 @@ public class PaymentByCardTest {
 
     @Test
     void validValuesOfFormAfterSendAnEmptyForm() {
+        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val emptyFields = DataHelper.getEmptyFields();
         val approvedInfo = DataHelper.getApprovedCardInfo();
@@ -124,6 +135,7 @@ public class PaymentByCardTest {
 
     @Test
     void invalidValuesOfAllFieldsForm() {
+        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val invalidValue = DataHelper.getInvalidCardForm();
         payForm.fillFormNoSendRequest(invalidValue);
