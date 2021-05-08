@@ -5,6 +5,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import lombok.val;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.data.DataHelper;
 import ru.netology.pages.OfferPage;
@@ -15,12 +16,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PaymentByCardTest {
     OfferPage offerPage = new OfferPage();
-    String dataSQLPayment = SQLHelper.getPaymentStatus();
-    String dataSQLPayAmount = SQLHelper.getPaymentAmount();
+
+    @BeforeEach
+    void openForTests() {
+        open("http://localhost:8080");
+    }
 
     @BeforeAll
     static void setUpAll() {
-//        open("http://localhost:8080");
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
@@ -31,118 +34,109 @@ public class PaymentByCardTest {
 
     @Test
     void downloadFormPaymentByCard() {
-        open("http://localhost:8080");
         offerPage.payByDebitCard();
     }
 
     @Test
     void payByApprovedCardWithAllValidValues() {
-        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val approvedInfo = DataHelper.getApprovedCardInfo();
         payForm.fillingForm(approvedInfo);
-        payForm.operationIsApproved();
+        payForm.checkOperationIsApproved();
+        String dataSQLPayment = SQLHelper.getPaymentStatus();
         assertEquals("APPROVED", dataSQLPayment);
     }
 
     @Test
     void payByApprovedCardWithAllValidValuesAndAmountSQLTest() {
-        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val approvedInfo = DataHelper.getApprovedCardInfo();
         payForm.fillingForm(approvedInfo);
-        payForm.operationIsApproved();
-        assertEquals("4500000", dataSQLPayAmount);
+        payForm.checkOperationIsApproved();
+        String dataSQLPayAmount = SQLHelper.getPaymentAmount();
+        assertEquals("45000", dataSQLPayAmount);
     }
 
     @Test
     void payByDeclinedCardWithAllValidValues() {
-        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val declinedInfo = DataHelper.getDeclinedCardInfo();
         payForm.fillingForm(declinedInfo);
-        payForm.errorNotification();
+        payForm.checkErrorNotification();
+        String dataSQLPayment = SQLHelper.getPaymentStatus();
         assertEquals("DECLINED", dataSQLPayment);
     }
 
     @Test
     void payByInvalidCardNumber() {
-        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val invalidCardNumber = DataHelper.getInvalidCardNumberInfo();
         payForm.fillingForm(invalidCardNumber);
-        payForm.errorNotification();
+        payForm.checkErrorNotification();
     }
 
     @Test
     void payByApprovedCardWithInvalidMonthValue() {
-        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val invalidMonth = DataHelper.getInvalidMonthInfo();
         payForm.fillFormNoSendRequest(invalidMonth);
-        payForm.invalidExpirationDate();
+        payForm.checkInvalidExpirationDate();
     }
 
     @Test
     void payByApprovedCardWithExpiredYearValue() {
-        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val expiredYear = DataHelper.getExpiredYearInfo();
         payForm.fillFormNoSendRequest(expiredYear);
-        payForm.cardExpired();
+        payForm.checkCardExpired();
     }
 
     @Test
     void payByApprovedCardWithInvalidYearValue() {
-        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val invalidYear = DataHelper.getInvalidYearInfo();
         payForm.fillFormNoSendRequest(invalidYear);
-        payForm.invalidExpirationDate();
+        payForm.checkInvalidExpirationDate();
     }
 
     @Test
     void payByApprovedCardWithInvalidOwnerValue() {
-        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val invalidOwner = DataHelper.getInvalidOwnerInfo();
         payForm.fillFormNoSendRequest(invalidOwner);
-        payForm.wrongFormat();
+        payForm.checkWrongFormat();
     }
 
     @Test
     void sendFormWithEmptyFields() {
-        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val emptyFields = DataHelper.getEmptyFields();
         payForm.fillFormNoSendRequest(emptyFields);
-        payForm.wrongFormat();
-        payForm.requiredField();
+        payForm.checkWrongFormat();
+        payForm.checkRequiredField();
     }
 
     @Test
     void validValuesOfFormAfterSendAnEmptyForm() {
-        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val emptyFields = DataHelper.getEmptyFields();
         val approvedInfo = DataHelper.getApprovedCardInfo();
         payForm.fillFormNoSendRequest(emptyFields);
-        payForm.wrongFormat();
-        payForm.requiredField();
+        payForm.checkWrongFormat();
+        payForm.checkRequiredField();
         payForm.fillingForm(approvedInfo);
-        payForm.operationIsApproved();
+        payForm.checkOperationIsApproved();
     }
 
     @Test
     void invalidValuesOfAllFieldsForm() {
-        open("http://localhost:8080");
         val payForm = offerPage.payByDebitCard();
         val invalidValue = DataHelper.getInvalidCardForm();
         payForm.fillFormNoSendRequest(invalidValue);
-        payForm.invalidMonthT();
-        payForm.invalidYearT();
-        payForm.invalidOwnerT();
-        payForm.invalidCVVT();
+        payForm.checkInvalidMonthT();
+        payForm.checkInvalidYearT();
+        payForm.checkInvalidOwnerT();
+        payForm.checkInvalidCVVT();
     }
 }
 

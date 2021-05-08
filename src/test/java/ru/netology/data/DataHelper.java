@@ -18,24 +18,22 @@ public class DataHelper {
         String cvv;
     }
 
-    //карты
     public static String getApprovedCardNumber() {
-        return new String("4444 4444 4444 4441");
+        return "4444 4444 4444 4441";
     }
 
     public static String getDeclinedCardNumber() {
-        return new String("4444 4444 4444 4442");
+        return "4444 4444 4444 4442";
     }
 
     public static String getInvalidCardNumber() {
-        return new String("3333 3333 3333 2222");
+        return "3333 3333 3333 2222";
     }
 
     public static String getEmptyCardNumberValue() {
-        return new String(" ");
+        return " ";
     }
 
-    //месяц
     public static String getValidMonth() {
         return "08";
     }
@@ -48,25 +46,24 @@ public class DataHelper {
         return " ";
     }
 
-    //год
     public static String getValidYear() {
         LocalDate year = LocalDate.now();
         LocalDate newYear = year.plusYears(4);
-        DateTimeFormatter yearFormatter = DateTimeFormatter.ofPattern("YY");
+        DateTimeFormatter yearFormatter = DateTimeFormatter.ofPattern("yy");
         return newYear.format(yearFormatter);
     }
 
     public static String getExpiredYear() {
         LocalDate year = LocalDate.now();
         LocalDate newYear = year.minusYears(11);
-        DateTimeFormatter yearFormatter = DateTimeFormatter.ofPattern("YY");
+        DateTimeFormatter yearFormatter = DateTimeFormatter.ofPattern("yy");
         return newYear.format(yearFormatter);
     }
 
     public static String getInvalidYear() {
         LocalDate year = LocalDate.now();
         LocalDate newYear = year.plusYears(78);
-        DateTimeFormatter yearFormatter = DateTimeFormatter.ofPattern("YY");
+        DateTimeFormatter yearFormatter = DateTimeFormatter.ofPattern("yy");
         return newYear.format(yearFormatter);
     }
 
@@ -74,7 +71,6 @@ public class DataHelper {
         return " ";
     }
 
-    //владелец
     public static String getValidOwner() {
         Faker faker = new Faker(new Locale("en"));
         return faker.name().fullName();
@@ -101,7 +97,6 @@ public class DataHelper {
         return " ";
     }
 
-    //вместе
     public static CardInfo getApprovedCardInfo() {
         return new CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getValidOwner(), getValidCVV());
     }

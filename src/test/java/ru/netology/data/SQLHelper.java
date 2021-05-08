@@ -3,8 +3,8 @@ package ru.netology.data;
 import lombok.val;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
-import ru.netology.sql.CreditRequest;
-import ru.netology.sql.PaymentRequest;
+import ru.netology.entities.CreditRequest;
+import ru.netology.entities.PaymentRequest;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,13 +12,13 @@ import java.sql.SQLException;
 
 public class SQLHelper {
     private static Connection connect;
-    private static final String url = System.getProperty("db.url");
-    private static final String username = System.getProperty("db.username");
-    private static final String password = System.getProperty("db.password");
+    private static final String URL = System.getProperty("db.url");
+    private static final String USERNAME = System.getProperty("db.username");
+    private static final String PASSWORD = System.getProperty("db.password");
 
     private static Connection getConnection() {
         try {
-            connect = DriverManager.getConnection(url, username, password);
+            connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }

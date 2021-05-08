@@ -1,7 +1,6 @@
 package ru.netology.pages;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.DataHelper;
 
@@ -13,7 +12,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selectors.byText;
 
-// страница оплаты
 public class PaymentPage {
     private SelenideElement cardNumberField = $("[placeholder = '0000 0000 0000 0000']");
     private SelenideElement monthField = $("[placeholder = '08']");
@@ -57,47 +55,47 @@ public class PaymentPage {
         buttonForContinue.click();
     }
 
-    public void operationIsApproved() {
+    public void checkOperationIsApproved() {
         operationIsApproved.shouldBe(Condition.visible, Duration.ofSeconds(10));
     }
 
-    public void errorNotification() {
+    public void checkErrorNotification() {
         errorNotification.shouldBe(Condition.visible, Duration.ofSeconds(10));
     }
 
-    public void invalidExpirationDate() {
+    public void checkInvalidExpirationDate() {
         invalidExpirationDate.shouldBe(Condition.visible);
     }
 
-    public void cardExpired() {
+    public void checkCardExpired() {
         cardExpired.shouldBe(Condition.visible);
     }
 
-    public void wrongFormat() {
+    public void checkWrongFormat() {
         wrongFormat.shouldHave(text("Неверный формат"));
     }
 
-    public void requiredField() {
+    public void checkRequiredField() {
         requiredField.shouldBe(Condition.visible);
     }
 
-    public void invalidCardNumberT(DataHelper.CardInfo invalidValue) {
+    public void checkInvalidCardNumberT(DataHelper.CardInfo invalidValue) {
         invalidFormatCard.shouldHave(text("Неверный формат"));
     }
 
-    public void invalidMonthT() {
+    public void checkInvalidMonthT() {
         invalidMonth.shouldHave(text("Неверный формат"));
     }
 
-    public void invalidYearT() {
+    public void checkInvalidYearT() {
         invalidYear.shouldHave(text("Неверный формат"));
     }
 
-    public void invalidOwnerT() {
+    public void checkInvalidOwnerT() {
         invalidOwner.shouldHave(text("Неверный формат"));
     }
 
-    public void invalidCVVT() {
+    public void checkInvalidCVVT() {
         invalidCVV.shouldHave(text("Неверный формат"));
     }
 }

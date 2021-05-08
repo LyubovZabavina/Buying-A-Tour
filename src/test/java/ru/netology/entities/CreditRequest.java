@@ -1,4 +1,4 @@
-package ru.netology.sql;
+package ru.netology.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

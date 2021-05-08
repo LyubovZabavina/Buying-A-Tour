@@ -6,7 +6,6 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
-// главная страница предложения
 public class OfferPage {
     private SelenideElement buyButton = $(byText("Купить"));
     private SelenideElement creditButton = $(byText("Купить в кредит"));
