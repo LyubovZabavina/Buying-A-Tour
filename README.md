@@ -1,7 +1,7 @@
 ## Документация
-1. [План автоматизации тестирования](https://github.com/ZabavinaL/Diploma/blob/06fd303222a166df862ccebddbb475a976605a5f/src/test/java/ru/netology/documentation/Plan.md)
-2. [Отчет по итогам тестирования](https://github.com/ZabavinaL/Diploma/blob/b671b75744fb0838367027c9d92e5b86fb46c3c9/src/test/java/ru/netology/documentation/Report.md)
-3. [Отчет по итогам автоматизации тестирования](https://github.com/ZabavinaL/Diploma/blob/505b6f44eaa6d4647d1b77c3b14487cc7ee81322/src/test/java/ru/netology/documentation/Summary.md)
+1. [План автоматизации тестирования](https://github.com/ZabavinaL/Diploma/blob/e6ccdda5bfa68c192eeb3e6f09ebec95161059e8/documentation/Plan.md)
+2. [Отчет по итогам тестирования](https://github.com/ZabavinaL/Diploma/blob/eb8c1959346756c401b2a3c0123a1ebd47c088ba/documentation/Report.md)
+3. [Отчет по итогам автоматизации тестирования](https://github.com/ZabavinaL/Diploma/blob/eb8c1959346756c401b2a3c0123a1ebd47c088ba/documentation/Summary.md)
 
 ## Процедура установки, настройки и запуска ПО
 ### Перед запуском авто-тестов, необходимо:
